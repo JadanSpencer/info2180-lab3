@@ -61,4 +61,23 @@ document.addEventListener("DOMContentLoaded", function () {
       square.classList.remove("hover");
     });
   });
+
+  // NEW - Exercise 5: the New Game button resets everything.
+  const newGameButton = document.querySelector(".btn");
+
+  newGameButton.addEventListener("click", function () {
+    // empty every square and clear our record
+    squares.forEach(function (square, index) {
+      square.textContent = "";
+      square.classList.remove("X", "O");
+      gameState[index] = "";
+    });
+
+    // X goes first again
+    currentPlayer = "X";
+
+    // put the original message back and remove the winner styling
+    statusDiv.textContent = "Move your mouse over a square and click to play an X or an O.";
+    statusDiv.classList.remove("you-won");
+  });
 });
