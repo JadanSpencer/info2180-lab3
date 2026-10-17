@@ -28,7 +28,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // NEW - Exercise 2: when this square is clicked...
     square.addEventListener("click", function () {
-      square.textContent = currentPlayer;     // show X or O in the box
+      // NEW - Exercise 6: if this square already has an X or O, do nothing.
+      if (gameState[index] !== "") {
+        return;
+      }
+
+      square.textContent = currentPlayer;    // show X or O in the box
       square.classList.add(currentPlayer);    // add class "X" or "O" for the colour
       gameState[index] = currentPlayer;       // remember it in our record
 
