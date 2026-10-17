@@ -11,6 +11,16 @@ document.addEventListener("DOMContentLoaded", function () {
   // NEW: a record of the board. 9 slots, one per square (numbered 0 to 8).
   const gameState = ["", "", "", "", "", "", "", "", ""];
 
+  // NEW: the status message box at the top of the page.
+  const statusDiv = document.getElementById("status");
+
+  // NEW: all 8 ways to win (each is 3 square numbers).
+  const winningLines = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+    [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+    [0, 4, 8], [2, 4, 6]             // diagonals
+  ];
+
   // Go through each square. "index" is its position number (0 to 8).
   squares.forEach(function (square, index) {
     // Exercise 1: give every square the "square" class so the CSS styles it.
@@ -21,6 +31,17 @@ document.addEventListener("DOMContentLoaded", function () {
       square.textContent = currentPlayer;     // show X or O in the box
       square.classList.add(currentPlayer);    // add class "X" or "O" for the colour
       gameState[index] = currentPlayer;       // remember it in our record
+
+      // NEW - Exercise 4: check every winning line. If all 3 squares belong
+      // to the current player, they win!
+      winningLines.forEach(function (line) {
+        if (gameState[line[0]] === currentPlayer &&
+            gameState[line[1]] === currentPlayer &&
+            gameState[line[2]] === currentPlayer) {
+          statusDiv.textContent = "Congratulations! " + currentPlayer + " is the Winner!";
+          statusDiv.classList.add("you-won");
+        }
+      });
 
       // switch turns
       if (currentPlayer === "X") {
