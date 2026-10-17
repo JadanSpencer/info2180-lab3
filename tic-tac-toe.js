@@ -29,5 +29,15 @@ document.addEventListener("DOMContentLoaded", function () {
         currentPlayer = "X";
       }
     });
+
+    // NEW - Exercise 3: when the mouse moves onto this square, add the hover style...
+    square.addEventListener("mouseenter", function () {
+      square.classList.add("hover");
+    });
+
+    // ...and when the mouse leaves, take it away again.
+    square.addEventListener("mouseleave", function () {
+      square.classList.remove("hover");
+    });
   });
 });
